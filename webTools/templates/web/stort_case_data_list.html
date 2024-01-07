@@ -1,0 +1,81 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+                    <!-- DataTales Example -->
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">{{ tille }}</h6>
+                        </div>
+
+
+                       <div class="col-md-4 ">
+                           <a class="btn btn-success " style="width: 100px ;display:block ; margin-top: 15px; margin-left: 15px"  href="/story/test/cases/data/add/"  >
+                                <span class="glyphicon glyphicon-plus-sign"  aria-hidden="true"> 添加步骤</span>
+                            </a>
+                        </div>
+
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>步骤名称</th>
+                                                <th>请求url</th>
+                                                <th>序号</th>
+                                                <th>请求方法</th>
+                                                <th>环境</th>
+                                                <th>所属故事用例</th>
+                                                <th>自定义变量</th>
+                                                <th>返回自定义变量</th>
+                                                <th>执行结果</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {%  for ff in data %}
+                                            <tr>
+                                                <td  class=" test_cs ">{{ forloop.counter}}</td>
+                                                <td  class=" test_cs ">{{ ff.story_test_case_name }}</td>
+                                                <td  class=" test_cs ">{{ ff.test_report_url }}</td>
+                                                <td  class=" test_cs ">{{ ff.serial_number }}</td>
+                                                <td  class=" test_cs ">{{ ff.get_request_method_display }}</td>
+                                                <td  class=" test_cs ">{{ ff.environment_id }}</td>
+                                                <td  class=" test_cs ">{{ ff.story_test_set_id }}</td>
+                                                <td  class=" test_cs ">{{ ff.custom_variable }}</td>
+                                                <td  class=" test_cs ">{{ ff.response_variable }}</td>
+                                                <td  class=" test_cs ">{{ ff.get_execution_results_display }}</td>
+
+                                                <td>
+                                                        <a class="btn  btn-success btn-xs" href="/story/test/cases/data/information/{{ ff.story_test_case_id }}/">查看</a>
+                                                        <a class="btn  btn-success btn-xs" href="/story/test/cases/data/information/edit/{{ ff.story_test_case_id  }}/">编辑</a>
+                                                        <a class="btn  btn-primary btn-xs" href="/story/test/cases/data/information/up/{{ ff.story_test_case_id  }}/">上移</a>
+                                                        <a class="btn  btn-primary btn-xs" href="/story/test/cases/data/information/down/{{ ff.story_test_case_id  }}/">下移</a>
+                                                        <a class="btn  btn-danger  btn-xs" href="/story/test/cases/data/information/delet/{{ ff.story_test_case_id  }}/">删除</a>
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

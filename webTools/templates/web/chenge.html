@@ -1,0 +1,41 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+                    <!-- DataTales Example -->
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">{{ tille }}</h6>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" novalidate>
+                                {% csrf_token %}
+                                {% for i in form  %}
+                                    <div class="form-group mb-4 ">
+
+                                        <label for="{{ i.id_for_label }}">
+                                                        {{ i.label}}
+                                        </label>
+                                        {{ i }}
+
+
+                                        <span style="color: red">{{ i.errors.0 }}</span>
+                                    </div>
+                                {% endfor %}
+                                <button type="submit" class="btn btn-primary">提 交</button>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+<link href="{% static " css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+<link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<head>
+    <style>
+        .d1 {
+            width: 300px;
+			height: 50px;
+			font-size: 20px;
+			padding-left: 15px;
+			border-radius: 10px;
+			margin-top: 20px;
+            }
+    </style>
+</head>
+<div class="p-5">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <h3>赠险单删除</h3>
+        <hr>
+        <div style="color: #ff0000">
+             <div>操作逻辑：</div>1.根据查询条件查询表'zkr_ins_product.order_presenter'（其中产品名称模糊搜索）； <br/>2.根据订单号和保单号来删除表'zkr_ins_product.order_presenter'（逻辑删除）；<br/>3.查询结果最多返回最近的100条；
+        </div>
+        <div class="row">
+            <div class="d1">
+                <select name="select_environment" class=" form-control form-control-user">
+                    <option value="test">测试环境</option>
+                    <option value="dev">开发环境</option>
+                    <option value="pre">预发环境</option>
+                </select>
+            </div>
+            <div class="d1">
+                <input type="text" name="appnt_mobile" class="form-control form-control-user" placeholder="投保人手机号" required=""
+                       id="id_member">
+            </div>
+
+            <div class=" d1">
+                <input type="text" name="product_name" class="form-control form-control-user" placeholder="产品名称"
+                       required="" id="id_member2">
+            </div>
+            <div class=" d1">
+                <input type="text" name="product_id" class="form-control form-control-user" placeholder="产品编码"
+                       required="" id="id_member3">
+            </div>
+
+        </div>
+        <button type="submit " class="btn btn-primary pull-right "
+                style="margin-right: 20px ;margin-top: 5px ;font-size:12px">查询
+        </button>
+        <div class="error" style="color: red;font-size: inherit;text-align: center;margin-top: 67px;margin-left: 550px;" >
+        {{ msg }}
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <!-- DataTales Example -->
+        <div class="card-header py-3">
+        </div>
+        <div class="card-body">
+
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>order_id</th>
+                        <th>policy_no</th>
+                        <th>app_status</th>
+                        <th>inner_order_source</th>
+                        <th>appnt_name</th>
+                        <th>appnt_mobile</th>
+                        <th>product_id</th>
+                        <th>product_name</th>
+                        <th>create_date</th>
+                        <th>环境</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for ff in pp %}
+                    <tr>
+                        <td class=" test_cs ">{{ ff.order_id}}</td>
+                        <td class=" test_cs ">{{ ff.policy_no}}</td>
+                        <td class=" test_cs ">{{ ff.app_status}}</td>
+                        <td class=" test_cs ">{{ ff.inner_order_source}}</td>
+                        <td class=" test_cs ">{{ ff.appnt_name}}</td>
+                        <td class=" test_cs ">{{ ff.appnt_mobile}}</td>
+                        <td class=" test_cs ">{{ ff.product_id}}</td>
+                        <td class=" test_cs ">{{ ff.product_name}}</td>
+                        <td class=" test_cs ">{{ ff.create_date}}</td>
+                        <td class=" test_cs ">{{ ff.env}}</td>
+                        {% if ff.policy_no != '' %}
+                            <td>
+                                <a class="btn  btn-danger  btn-xs "
+
+                                   href="/premium/insurance/delet/{{ ff.order_id }}/{{ff.policy_no}}/{{ ff.env }}/">删除</a>
+                            </td>
+                        {% else %}
+                             <td>
+                                <a class="btn  btn-danger  btn-xs "
+
+                                   href="/premium/insurance/delet/{{ ff.order_id }}/{{ ff.env }}/">删除</a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% for i in pp %}
+    <p style="color: red"> {{ i.sql }} </p>
+
+    <p style="color: red"> {{ i.sql2 }} </p>
+    {% endfor %}
+</div>
+
+{% endblock %}
+{% block js %}
+<script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

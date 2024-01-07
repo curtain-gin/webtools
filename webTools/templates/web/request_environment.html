@@ -1,0 +1,70 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+                    <!-- DataTales Example -->
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">环境管理</h6>
+                        </div>
+                        <div>
+                                <a class="btn btn-success " style="width: 100px ;display:block ; margin-top: 15px; margin-left: 15px"  href="/request/environment/add/"  >
+                                <span class="glyphicon glyphicon-plus-sign"  aria-hidden="true"> 新建环境</span>
+
+                            </a>
+                            </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>环境ID</th>
+                                                <th>环境名称</th>
+                                                <th>环境url</th>
+                                                <th>swagger环境url</th>
+                                                <th>TS文件名</th>
+                                                <th>环境请求头</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {%  for ff in fro %}
+
+                                            <tr>
+                                                <td  class=" test_cs ">{{ forloop.counter}}</td>
+                                                <td  class=" test_cs ">{{ ff.environment_id }}</td>
+                                                <td  class=" test_cs ">{{ ff.environment_name }}</td>
+                                                <td  class=" test_cs ">{{ ff.environment_url }}</td>
+                                                <td  class=" test_cs ">{{ ff.swagger_url }}</td>
+                                                <td  class=" test_cs ">{{ ff.download_address }}</td>
+                                                <td  class=" test_cs ">{{ff.environment_hander  }}</td>
+                                                <td>
+                                                        <a class="btn  btn-primary  btn-xs " href="/request/environment/edit/{{ ff.environment_id }}/">编辑</a>
+                                                        <a class="btn  btn-primary  btn-xs " href="/swagger/management/run/{{ ff.environment_id}}">执行</a>
+                                                        <a class="btn  btn-success  btn-xs " href="/swagger/ts/down/{{ ff.environment_id }}/">下载</a>
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

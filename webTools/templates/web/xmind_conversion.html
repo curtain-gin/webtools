@@ -1,0 +1,54 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href="{% static "vendor/datatables/dataTables.bootstrap4.min.css" %}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+    <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+
+        <div class="container-fluid px-4">
+
+				<div class=" col-12">
+
+						<h3>xmind数据转换</h3>
+						<hr>
+                    <div class="row">
+                        <div class=" col-md-6  ">
+                            <div class="form-group">
+                                <label class="control-label" style="color: red">请上传xmind文件 </label>
+                                <input type="file" name="myfile" class="filestyle" data-text="查找文件" data-dragdrop="false">
+                                <div style="color: red">
+                                    <h3>{{ error }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-md-6  ">
+                            <div class="form-group2">
+                                 <a class="btn btn-primary  pull-right  " href="/xmind/exl/data/download/xmind/">
+                                    <span class="glyphicon "  aria-hidden="true"> 下载xmind模版</span>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class=" col-md-1 ">
+
+                            <div class="form-group">
+                                <input type="submit" value="上传转换并下载" class="filestyle btn btn-primary  pull-right" data-text="Open" data-input="false" >
+
+                            </div>
+                        </div>
+				    </div>
+			    </div>
+        </div>
+    </form>
+
+{% endblock %}
+{% block js %}
+    <script></script>
+
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

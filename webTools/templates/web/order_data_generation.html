@@ -1,0 +1,76 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+        <div class="p-5">
+        <form method="post" novalidate>
+        {% csrf_token %}
+            <h3>订单基础数据生成</h3>
+            <hr>
+            <div class="row">
+                {%  for i in pp  %}
+
+                            <div class="col-md-3 ">
+                           <label for="{{ id.id_for_label }}">
+                           {{ i.label}}
+                       </label>
+                           {{ i}}
+                           <span style="color: red">{{ i.errors.0 }}</span>
+                            </div>
+
+                {% endfor %}
+            </div>
+
+
+
+                <button type="submit " class="btn btn-primary pull-right " style="margin-right: 20px ;margin-top: 5px ;font-size:12px">生成数据</button>
+
+        </form>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6>{{ tille }}</h6>
+        </div>
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>身份证</th>
+                                <th>姓名</th>
+                                <th>地址</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {%  for ff in order_data %}
+                            <tr>
+                                <td  class=" test_cs ">{{ forloop.counter}}</td>
+                                <td  class=" test_cs ">{{ ff.fenzheng}}</td>
+                                <td  class=" test_cs ">{{ ff.name}}</td>
+                                <td  class=" test_cs ">{{ ff.addres}}</td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

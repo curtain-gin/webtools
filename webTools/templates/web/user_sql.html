@@ -1,0 +1,26 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+     <a class="btn btn-success  pull-right  " style="width: 150px ;margin-right: 30px ;margin-top: 1px" href="/other/user/list/">返回工具</a>
+
+    <div class="container-fluid">
+
+            {% for i in pp %}
+                                <p style="color: red">   {{ i.sql }} </p>
+
+                                <p style="color: red">   {{ i.sql2 }} </p>
+            {% endfor %}
+
+    
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

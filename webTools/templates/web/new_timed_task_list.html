@@ -1,0 +1,104 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+                    <!-- DataTales Example -->
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">定时任务列表</h6>
+                        </div>
+                        <div>
+                                <a class="btn btn-success " style="width: 100px ;display:block ; margin-top: 15px; margin-left: 15px"  href="/new/timed/tasks/add/"  >
+                                <span class="glyphicon glyphicon-plus-sign"  aria-hidden="true"> 新建定时任务</span>
+
+                            </a>
+                            </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>任务ID</th>
+                                                <th>定时任务名</th>
+                                                <th>定时任务类型</th>
+                                                <th>下次执行时间</th>
+                                                <th>负责人</th>
+                                                <th>所属无序测试集</th>
+                                                <th>所属有序测试集</th>
+                                                <th>星期</th>
+                                                <th>时</th>
+                                                <th>分</th>
+                                                <th>秒</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {%  for ff in data %}
+
+                                            <tr>
+                                                <td  class=" test_cs ">{{ forloop.counter}}</td>
+                                                <td  class=" test_cs ">{{ ff.test_set_tasks_run_id }}</td>
+                                                <td  class=" test_cs ">{{ ff.tasks_time_name }}
+
+                                                {% if  ff.tasks_method   == 1 %}
+                                                    <td  class=" test_cs ">测试集定时任务类型</td>
+                                                    {% elif ff.tasks_method  == 0    %}
+                                                        <td  class=" test_cs ">swagger定时任务类型</td>
+                                                    {% else %}
+                                                         <td  class=" test_cs ">故事模式定时任务类型</td>
+                                                {% endif %}
+                                                <td  class=" test_cs ">{{ ff.next_run_time }}</td>
+                                                <td  class=" test_cs ">{{ ff.mobile_phone }}</td>
+                                                <td  class=" test_cs ">{{ ff.test_set_tasks_name }}</td>
+                                                <td  class=" test_cs ">{{ ff.story_test_set_name }}</td>
+                                                {% if  ff.weed   == 0 %}
+                                                    <td  class=" test_cs ">未选择</td>
+                                                {% elif ff.weed  == 1    %}
+                                                    <td  class=" test_cs ">星期一</td>
+                                                {% elif ff.weed  == 2    %}
+                                                    <td  class=" test_cs ">星期二</td>
+                                                {% elif ff.weed  == 3    %}
+                                                    <td  class=" test_cs ">星期三</td>
+                                                {% elif ff.weed  == 4    %}
+                                                    <td  class=" test_cs ">星期四</td>
+                                                {% elif ff.weed  == 5    %}
+                                                    <td  class=" test_cs ">星期五</td>
+                                                {% elif ff.tasks_method  == 6    %}
+                                                    <td  class=" test_cs ">星期六</td>
+                                                {% else %}
+
+                                                    <td  class=" test_cs ">星期日</td>
+                                                {% endif %}
+
+                                                <td  class=" test_cs ">{{ ff.hour }}</td>
+                                                <td  class=" test_cs ">{{ ff.minute }}</td>
+                                                <td  class=" test_cs ">{{ ff.second }}</td>
+                                                <td>
+													<a class="btn  btn-primary  btn-xs " href="/scheduler/job/edit/{{ff.test_set_tasks_run_id}}/">编辑</a>
+														<a class="btn  btn-primary  btn-xs " href="/scheduler/job/delet/{{ff.test_set_tasks_run_id}}/">删除</a>
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

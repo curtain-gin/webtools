@@ -1,0 +1,65 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+                    <!-- DataTales Example -->
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">{{ tille }}</h6>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>版本名称</th>
+                                                <th>版本号</th>
+                                                <th>所属环境</th>
+                                                <th>创建时间</th>
+                                                <th>创建人</th>
+                                                <th>TS文件</th>
+                                                <th>操作</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {%  for ff in ff %}
+                                            <tr>
+                                                <td  class=" test_cs ">{{ forloop.counter}}</td>
+                                                <td  class=" test_cs ">{{ ff.version_name }}</td>
+                                                <td  class=" test_cs ">{{ ff.version_number }}</td>
+                                                <td  class=" test_cs ">{{ ff.environment_id}}</td>
+                                                <td  class=" test_cs ">{{ ff.creat_time }}</td>
+                                                <td  class=" test_cs ">{{  ff.creat_user }}</td>
+                                                <td  class=" test_cs ">{{  ff.download_address }}</td>
+                                                <td>
+                                                    <a class="btn  btn-primary btn-xs" href="/version/management/edit/{{ ff.version_id }}/">编辑</a>
+                                                    <a class="btn  btn-success  btn-xs " href="/version/ts/down/{{ ff.version_id }}">下载</a>
+
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

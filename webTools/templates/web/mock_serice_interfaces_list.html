@@ -1,0 +1,65 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+                    <!-- DataTales Example -->
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">{{ tille }}</h6>
+                        </div>
+                        <div>
+                                <a class="btn btn-success " style="width: 100px ;display:block ; margin-top: 15px; margin-left: 15px"  href="/mockserice/interfaces/add/"  >
+                                <span class="glyphicon glyphicon-plus-sign"  aria-hidden="true"> 添加接口</span>
+
+                            </a>
+                            </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>接口名称</th>
+                                                <th>URL</th>
+                                                <th>请求方式</th>
+                                                <th>创建类型</th>
+                                                <th>操作</th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {%  for ff in ff %}
+                                            <tr>
+                                                <td  class=" test_cs ">{{ forloop.counter}}</td>
+                                                <td  class=" test_cs ">{{ ff.interface_name }}</td>
+                                                <td  class=" test_cs ">{{ ff.request_url }}</td>
+                                                <td  class=" test_cs ">{{ ff.get_request_method_display }}</td>
+                                                <td  class=" test_cs ">{{  ff.get_interface_add_type_display  }}</td>
+                                                <td>
+                                                        <a class="btn  btn-primary  btn-xs " href="/mockserice/interfaces/info/{{ ff.mock_service_id }}/">查看</a>
+                                                        <a class="btn  btn-primary  btn-xs " href="/mockserice/interfaces/edit/{{ ff.mock_service_id }}/">编辑</a>
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+    <div class="p-5">
+        <form method="post" novalidate>
+        {% csrf_token %}
+            <h3>会员删除</h3>
+            <hr>
+               <div class="row">
+                   <div class=" col-md-4  selectpicker">
+                        <select  name ="select_environment" class=" form-control form-control-user"  >
+                            <option value="test">测试环境</option>
+                            <option  value="dev">开发环境</option>
+                        </select>
+                   </div>
+                    <div class="col-md-4 ">
+                                <input type="text" name="phone" class="form-control form-control-user" placeholder="手机号" required="" id="id_member">
+                    </div>
+                    <div class=" col-md-4">
+                                <input type="text" name="openid" class="form-control form-control-user" placeholder="openid" required="" id="non_members">
+                    </div>
+
+               </div>
+                <button type="submit " class="btn btn-primary pull-right " style="margin-right: 20px ;margin-top: 5px ;font-size:12px">查询用户</button>
+        </form>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+                    <!-- DataTales Example -->
+                        <div class="card-header py-3">
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>姓名</th>
+                                                <th>手机号</th>
+                                                <th>OFFICIAL ID</th>
+                                                <th>环境</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {%  for ff in pp %}
+
+                                            {% if ff.mobile != None %}
+
+                                            <tr>
+
+                                                <td  class=" test_cs ">{{ forloop.counter}}</td>
+                                                <td  class=" test_cs ">{{ ff.user_name}}</td>
+                                                <td  class=" test_cs ">{{ ff.mobile}}</td>
+                                                <td  class=" test_cs ">{{ ff.official_user_id}}</td>
+                                                <td  class=" test_cs ">{{ ff.env}}</td>
+                                                <td>
+                                                    <a class="btn  btn-danger  btn-xs " href="/other/user/members/delet/{{ ff.mobile }}/{{ ff.env }}/">删除</a>
+                                                </td>
+
+                                            </tr>
+                                            {% else %}
+
+                                                <tr>
+                                                <td  class=" test_cs ">{{ forloop.counter}}</td>
+                                                <td  class=" test_cs ">{{ ff.user_name}}</td>
+                                                <td  class=" test_cs ">{{ ff.mobile}}</td>
+                                                <td  class=" test_cs ">{{ ff.openid}}</td>
+                                                <td  class=" test_cs ">{{ ff.env}}</td>
+                                                <td>
+                                                    <a class="btn  btn-danger  btn-xs " href="/other/user/members/delet/{{ ff.openid }}/{{ ff.env }}/">删除</a>
+                                                </td>
+
+                                            </tr>
+                                            {% endif %}
+
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {% for i in pp %}
+                    <p style="color: red">   {{ i.sql }} </p>
+
+                    <p style="color: red">   {{ i.sql2 }} </p>
+                    {% endfor %}
+                </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

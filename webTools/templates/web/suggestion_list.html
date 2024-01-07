@@ -1,0 +1,85 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+                    <!-- DataTales Example -->
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">{{ tille }}</h6>
+                        </div>
+
+                <font color="#FF0000">前言：觉得哪些地方交互有问题，欢迎提出建议！</font>
+
+                <div class="row">
+                        <div class=" col-md-6  ">
+                            <div>
+                                <a class="btn btn-primary " style="width: 100px ;display:block ; margin-top: 15px; margin-left: 15px"  href="/suggestion/add/"  >
+                                <span class="glyphicon glyphicon-plus-sign"  aria-hidden="true"> 添加建议</span>
+                            </a>
+                            </div>
+                        </div>
+                        <div class=" col-3 offset-md-3 ">
+                            <div>
+                                <a class="btn btn-primary pull-right  "  style="margin-top: 15px;" href="/suggestion/download/"  >
+                                <span class="glyphicon glyphicon-plus-sign"  aria-hidden="true"> 导出excl表格</span>
+                            </a>
+                            </div>
+                        </div>
+                </div>
+
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>所属工具模块</th>
+                                                <th>建议描述</th>
+                                                <th>提出人</th>
+                                                <th>提出时间</th>
+                                                <th>状态</th>
+                                                <th>处理人</th>
+                                                <th>备注</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {%  for ff in fro %}
+                                            <tr>
+                                                <td  class=" test_cs ">{{forloop.counter}}</td>
+                                                <td  class=" test_cs ">{{ff.module}}</td>
+                                                <td  class=" test_cs ">{{ff.detail}}</td>
+                                                <td  class=" test_cs ">{{ff.reporter}}</td>
+                                                <td  class=" test_cs ">{{ff.create_time}}</td>
+                                                <td  class=" test_cs ">{{ff.get_status_display }}</td>
+                                                <td  class=" test_cs ">{{ff.Solver }}</td>
+                                                <td  class=" test_cs ">{{ff.remark }}</td>
+                                                <td>
+                                                        <a class="btn  btn-primary btn-xs" href="/suggestion/edit/{{ ff.suggest_id }}/">编辑</a>
+                                                        <a class="btn  btn-danger  btn-xs " href="/suggestion/delet/{{ ff.suggest_id }}/">删除</a>
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+    <div class="p-5">
+        <form method="post" novalidate>
+        {% csrf_token %}
+            <h3>产品库授权检查表查询</h3>
+            <hr>
+               <div class="row">
+                   <div class=" col-md-4  selectpicker">
+                        <select  name ="select_environment" class=" form-control form-control-user"  >
+                            <option value="test">测试环境</option>
+                            <option  value="dev">开发环境</option>
+                        </select>
+                   </div>
+
+               </div>
+                <button type="submit " class="btn btn-primary pull-right " style="margin-right: 20px ;margin-top: 5px ;font-size:12px">查询数据</button>
+        </form>
+    </div>
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6>产品库授权检查表</h6>
+        </div>
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>授权书id</th>
+                                <th>服务授权书名字</th>
+                                <th>产品id</th>
+                                <th>产品名字</th>
+                                <th>出单机构编码</th>
+                                <th>出单机构名称</th>
+                                <th>授权书合同图片地址pdf路径</th>
+                                <th>授权书合同图片地址html路径</th>
+                                <th>文件类型</th>
+                                <th>是否展示</th>
+                                <th>创建时间</th>
+                                <th>创建者</th>
+                                <th>创建时间</th>
+                                <th>修改者</th>
+                                <th>删除标记</th>
+                                <th>环境</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {%  for ff in pp %}
+                            <tr>
+                                <td  class=" test_cs ">{{ forloop.counter}}</td>
+                                <td  class=" test_cs ">{{ ff.id}}</td>
+                                <td  class=" test_cs ">{{ ff.authorization_name}}</td>
+                                <td  class=" test_cs ">{{ ff.product_id}}</td>
+                                <td  class=" test_cs ">{{ ff.product_name}}</td>
+                                <td  class=" test_cs ">{{ ff.institutional_code}}</td>
+                                <td  class=" test_cs ">{{ ff.institutional_name}}</td>
+                                <td  class=" test_cs ">{{ ff.image_url_pdf}}</td>
+                                <td  class=" test_cs ">{{ ff.image_url_html}}</td>
+                                <td  class=" test_cs ">{{ ff.authorization_type}}</td>
+                                <td  class=" test_cs ">{{ ff.is_show}}</td>
+                                <td  class=" test_cs ">{{ ff.created_time}}</td>
+                                <td  class=" test_cs ">{{ ff.created_by}}</td>
+                                <td  class=" test_cs ">{{ ff.updated_time}}</td>
+                                <td  class=" test_cs ">{{ ff.updated_by}}</td>
+                                <td  class=" test_cs ">{{ ff.is_deleted}}</td>
+                                <td  class=" test_cs ">{{ ff.env}}</td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

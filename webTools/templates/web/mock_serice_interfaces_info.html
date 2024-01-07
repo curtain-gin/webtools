@@ -1,0 +1,146 @@
+{% extends 'web/layout/layoutlast.html' %}
+{%  load static %}
+{% block css %}
+    <link href="{% static "css/sb-admin-2.min.css" %}" rel="stylesheet"  />
+    <link href={% static "vendor/datatables/dataTables.bootstrap4.min.css" %} rel="stylesheet" />
+{% endblock %}
+{% block content %}
+    <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">接口信息</h1>
+                    </div>
+
+
+                    <div class="row">
+
+
+                            <!-- Collapsable Card Example -->
+                            <div class="card shadow mb-3">
+                                <!-- Card Header - Accordion -->
+                                <a href="#InterfaceName" class="d-block card-header py-3" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="InterfaceName">
+                                    <h6 class="m-0 font-weight-bold text-primary">接口名称</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse show" id="InterfaceName">
+                                    <div class="card-body">
+                                       {{ data.interface_name }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow mb-3">
+                                <!-- Card Header - Accordion -->
+                                <a href="#InterfaceUrl" class="d-block card-header py-3" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="InterfaceUrl">
+                                    <h6 class="m-0 font-weight-bold text-primary">接口地址</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse show" id="InterfaceUrl">
+                                    <div class="card-body">
+                                       {{ data.request_url }}
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="card shadow mb-3">
+                                <!-- Card Header - Accordion -->
+                                <a href="#RequestMethon" class="d-block card-header py-3" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="RequestMethon">
+                                    <h6 class="m-0 font-weight-bold text-primary">请求方式</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse show" id="InterfaceUrl">
+                                    <div class="card-body">
+                                       {{ data.get_request_method_display}}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                                <div class="card shadow mb-3">
+                                    <!-- Card Header - Accordion -->
+                                    <a href="#RequestParameters" class="d-block card-header py-3" data-toggle="collapse"
+                                        role="button" aria-expanded="true" aria-controls="RequestParameters">
+                                        <h6 class="m-0 font-weight-bold text-primary">请求参数</h6>
+                                    </a>
+                                    <!-- Card Content - Collapse -->
+                                    <div class="collapse show" id="RequestParameters">
+                                        <div class="card-body">
+
+                                                {{ data.request_parameters }}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="card shadow mb-3">
+                                <!-- Card Header - Accordion -->
+                                <a href="#ResponseParameters" class="d-block card-header py-3" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="ResponseParameters">
+                                    <h6 class="m-0 font-weight-bold text-primary">响应参数</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse show" id="ResponseParameters">
+                                    <div class="card-body">
+                                       {{ data.response_parameters }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow mb-3">
+                                <!-- Card Header - Accordion -->
+                                <a href="#InFieldDescription" class="d-block card-header py-3" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="InFieldDescription">
+                                    <h6 class="m-0 font-weight-bold text-primary">请求注释</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse show" id="ResponseParameters">
+                                    <div class="card-body">
+                                       {{ data.in_field_description }}
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="card shadow mb-3">
+                                <!-- Card Header - Accordion -->
+                                <a href="#ReponseInFieldDescription" class="d-block card-header py-3" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="ReponseInFieldDescription">
+                                    <h6 class="m-0 font-weight-bold text-primary">响应注释</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse show" id="ResponseParameters">
+                                    <div class="card-body">
+                                       {{ data.reponse_in_field_description }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static '/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/js/demo/datatables-demo.js' %}"></script>
+{% endblock %}
