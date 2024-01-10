@@ -361,10 +361,10 @@ python manage.py runserver 0.0.0.0:8000
 
 使用手机号登陆/默认密码123456
 
-![Screenshot_select-area_20240110185103](/webtools/static/images/Screenshot_select-area_20240110185103.png)
+![image](https://github.com/f1v3-1c3/webtools/blob/main/static/images/Screenshot_select-area_20240110185103.png)
 
 
 
-成功登陆
 
-![Screenshot_select-area_20240110185355](/webtools/static/images/Screenshot_select-area_20240110185355.png)
+
+![image](https://github.com/f1v3-1c3/webtools/blob/main/static/images/Screenshot_select-area_20240110185355.png)
