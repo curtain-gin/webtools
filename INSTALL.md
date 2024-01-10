@@ -357,10 +357,14 @@ COMMIT;
 python manage.py runserver 0.0.0.0:8000
 ```
 
-![image-20240110183839542](/home/f1v3/.config/Typora/typora-user-images/image-20240110183839542.png)
+
 
 使用手机号登陆/默认密码123456
 
-![image-20240110183940566](/home/f1v3/.config/Typora/typora-user-images/image-20240110183940566.png)
+![Screenshot_select-area_20240110185103](/home/f1v3/Pictures/Screenshots/Screenshot_select-area_20240110185103.png)
+
+
 
 成功登陆
+
+![Screenshot_select-area_20240110185355](/home/f1v3/Pictures/Screenshots/Screenshot_select-area_20240110185355.png)
