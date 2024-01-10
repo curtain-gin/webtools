@@ -1,12 +1,7 @@
+
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-# *********************************************************
-# @@ScriptName:
-# @@Author: 周雅
-# @@Create Date: 
-# @@Modify Date: 
-# @@Description: 汇总自动化脚本提交信息，包括提交分支，路径，文件等
-# *********************************************************
+
 import logging
 from django.shortcuts import render, redirect
 from webTools.forms.case_form import CaseAddFrom, CaseEditFrom

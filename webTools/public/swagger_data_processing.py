@@ -89,12 +89,9 @@ class DataProcessing:
         iii.initial_data_processing()
         ts_or_test = 1
         ts = [
-            "https://swagger.ennejb.cn/swagger/opcs/v2/api-docs	",
             'http://0.0.0.0:7777/mock/ooo/v2/apidocs',
             'http://0.0.0.0:7777/mock/oooo/v2/apidocs',
-            'https://swagger.ennejb.cn/swagger/api/sms/v2/api-docs',
-            'https://swagger.ennejb.cn/swagger/api/file/v2/api-docs',
-            'https://swagger.ennejb.cn/swagger/api/es/v2/api-docs'
+
         ]
 
         if swagger_url in str(ts):

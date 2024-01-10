@@ -3,7 +3,6 @@ from webTools.views import (
     index,
     permission,
     permission_path,
-    other_user,
     order_data_generation,
     user_log,
     xmin_exl_data,
@@ -21,12 +20,9 @@ from webTools.views import (
     version_management,
     test_jiji,
     user,
-    insure_num_reset,
     demand,
     defect,
     suggestion,
-    delete_premium_insurance,
-    delete_insurance,
     auto_framework_commit,
     data_b
 
@@ -67,25 +63,12 @@ urlpatterns = [
     path('log/out/', user_log.log_out),
     path('log/normal/', user_log.log_normal),
     # 小工具
-    ##会员非会员删除
-    path('other/user/list/', other_user.other_list),
-    path('other/user/visitor/list/', other_user.other_visitor_user_list),
-    path('other/user/members/delet/<str:nid>/<str:env>/', other_user.other_membersuser_delet),
-    path('other/user/nom/delet/<str:nid>/<str:env>/', other_user.other_nom_user_delet),
+
     ##订单基础数据生成
     path('data/generation/', order_data_generation.order_data_generation),
     # xmind 转换
     path('xmind/exl/data/', xmin_exl_data.xmind_conversion),
     path('xmind/exl/data/download/xmind/', xmin_exl_data.xmind_to_exl_down),
-    # 赠险单删除
-    path('premium/insurance/list/', delete_premium_insurance.premium_insurance_list),
-    path('premium/insurance/delet/<str:nid1>/<str:nid2>/<str:env>/', delete_premium_insurance.premium_insurance_delet),
-    path('premium/insurance/delet/<str:nid1>/<str:env>/', delete_premium_insurance.premium_insurance_delet),
-    # 非赠险单删除
-    path('insurance/list/', delete_insurance.insurance_list),
-    path('insurance/delet/<str:nid1>/<str:env>/', delete_insurance.insurance_delet),
-    # 投保次数重置
-    path('insure/num/reset/', insure_num_reset.insure_num_reset),
     # json解析
     path('json/parse/', order_data_generation.json_parse),
     # SQL查询
@@ -206,9 +189,7 @@ urlpatterns = [
     path('story/test/report/list/', story_report.story_test_report_list),
     path('story/test/report/view/<int:nid>/', story_report.story_test_report_view),
     path('story/test/report/case/log/<int:nid>/', story_report.story_test_report_case_log),
-    #buf
-    path('data/list/', data_b.data_list),
-    path('all/data/run/', data_b.all_data_run),
+
 ]
 hander400 = error_page.bad_request
 hander403 = error_page.permission_denied
