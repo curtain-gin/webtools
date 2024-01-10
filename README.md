@@ -1,6 +1,6 @@
 # webtools测试平台/webtools Test platform
 
-项目由python3.9 + djaong+bootstrap/The project is composed of python3.9 + djaong+bootstrap
+项目由python3.9 + djaong+bootstrap+mysql/The project is composed of python3.9 + djaong+bootstrap +mysql
 
 
 
